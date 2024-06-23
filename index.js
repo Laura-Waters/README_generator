@@ -42,8 +42,18 @@ inquirer
     },
     {
         type: 'input',
-        message: ('Input instructions for a test that can be run on your project.'),
-        name: 'test',
+        message: ('Input instructions for any tests that can be run on your project.'),
+        name: 'tests',
+    },
+    {
+        type: 'input',
+        message: ('What is your GitHub username?'),
+        name: 'github',
+    },
+    {
+        type: 'input',
+        message: ('What is your email address?'),
+        name: 'email',
     },
   ])
   .then((response) => {
