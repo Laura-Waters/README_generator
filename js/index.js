@@ -1,15 +1,15 @@
 // DEPENDENCIES 
 const inquirer = require('inquirer'); 
-const fs = require('fs');
+const fs = require('fs'); 
 
 const writeToFile = function(mdString) {
     fs.writeFile('README.md', mdString, (err) =>
     err ? console.log(err) : console.log('Success!'))
 }; 
 
-const formattedResponse = function(response) {
+const formattedResponse = function(response, licenseLink) {
 const readme= `
-# ${response.title} 
+# ${response.title} ${licenseLink}
 
 ## Description
     
@@ -83,7 +83,7 @@ inquirer
         type: "list",
         message: "What license did you select for your project?",
         name: "license",
-        choices: ["MIT License", "GNU General Public License", "GNU Lesser General Public License", "Apache License 2.0", "Mozilla Public License 2.0", "BSD License", "Creative Commons License"],
+        choices: ["MIT License", "GNU General Public License", "Apache License 2.0", "Mozilla Public License 2.0", "BSD License", "Creative Commons License"],
     }, 
     {
         type: 'input',
@@ -107,7 +107,26 @@ inquirer
     },
   ])
   .then((response) => {
-    const mdString = formattedResponse(response);
+    const license = response.license; 
+    const licenseLink = renderLicenseLink(license); 
+    const mdString = formattedResponse(response, licenseLink); 
     writeToFile(mdString);
     }
 );   
+
+  function renderLicenseLink(license) { 
+    if (license === "MIT License") {
+     return `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT);`
+    } else if (license === "GNU General Public License") {
+     return `[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)`
+    } else if (license === "Apache License 2.0") {
+     return `[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)` 
+    } else {
+     return ''
+    } 
+ }; 
+
+
+
+
+
