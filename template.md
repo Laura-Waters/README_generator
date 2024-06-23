@@ -1,4 +1,4 @@
-# ${response.title}
+# ${response.title} 
 
 ## Description
 
@@ -15,7 +15,7 @@ ${response.description}
 
 ## Installation
 
-${response.installation}
+${response.installation} 
 
 ## Usage
 
@@ -35,7 +35,7 @@ ${response.tests}
 
 ## Questions 
 
-If you have any additional questions, reach out to me via GitHub or email:
+If you have any additional questions, reach out to me via GitHub or Email:
 https://github.com/${response.github}
 ${response.email}
 

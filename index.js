@@ -1,11 +1,61 @@
-// TODO: Include packages needed for this application
 // DEPENDENCIES 
 const inquirer = require('inquirer'); 
 const fs = require('fs');
 
+const writeToFile = function(mdString) {
+    fs.writeFile('README.md', mdString, (err) =>
+    err ? console.log(err) : console.log('Success!'))
+}; 
 
-// TODO: Create an array of questions for user input
-const questions = [];
+const formattedResponse = function(response) {
+const readme= `
+# ${response.title} 
+
+## Description
+    
+${response.description}
+    
+## Table of Contents 
+    
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license) 
+- [Contributing](#contributing) 
+- [Tests](#tests) 
+- [Questions](#questions)  
+    
+## Installation
+    
+${response.installation} 
+    
+## Usage
+    
+${response.usage} 
+    
+## License 
+    
+${response.license}
+    
+## Contributing 
+    
+${response.credits} 
+    
+## Tests 
+    
+${response.tests} 
+    
+## Questions 
+    
+If you have any additional questions, reach out to me via GitHub or Email: <br>
+https://github.com/${response.github} <br>
+${response.email}
+
+`;
+
+    return readme; 
+};
+
+
 
 inquirer
   .prompt([
@@ -57,38 +107,7 @@ inquirer
     },
   ])
   .then((response) => {
-    const htmlString = formattedResponse(response);
-    writeToLog(htmlString);
+    const mdString = formattedResponse(response);
+    writeToFile(mdString);
     }
-);
-
-const formattedResponse = function(response) {
-    return `<!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./css/style.css"></link>
-        <title>${response.name}</title>
-    </head>
-    <body>
-        <header>
-         <h1>${response.name}</h1>
-        </header>
-        <section>
-            <h2>About Me</h2>
-            <p class="about-me-section">Hi, my name is ${response.name}.<br>I'm a ${response.profession} based in ${response.location}.<br>To view some of my recent work, checkout my GitHub: <a href="https://github.com/${response.github}" target="_blank">${response.github}</a> or my LinkedIn: <a href="https://${response.linkedin}" target="_blank">${response.linkedin}.</a></p>
-        </section>
-    </body>
-    </html>`;
-};
-
-
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
-
-// TODO: Create a function to initialize app
-function init() {}
-
-// Function call to initialize app
-init();
+);   
