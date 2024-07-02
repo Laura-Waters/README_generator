@@ -1,9 +1,10 @@
 // DEPENDENCIES 
 const inquirer = require('inquirer'); 
 const fs = require('fs'); 
+const path = './README.md'; 
 
-const writeToFile = function(mdString) {
-    fs.writeFile('README.md', mdString, (err) =>
+const writeToFile = function(filePath, mdString) {
+    fs.writeFile(filePath, mdString, (err) =>
     err ? console.log(err) : console.log('Success!'))
 }; 
 
@@ -110,7 +111,7 @@ inquirer
     const license = response.license; 
     const licenseLink = getLicenseLink(license); 
     const mdString = formattedResponse(response, licenseLink); 
-    writeToFile(mdString);
+    writeToFile(path,mdString);
     }
 );   
 
