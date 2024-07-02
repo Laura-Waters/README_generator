@@ -1,7 +1,7 @@
 // DEPENDENCIES 
 const inquirer = require('inquirer'); 
 const fs = require('fs'); 
-const path = './README.md'; 
+const path = '../README.md'; 
 
 const writeToFile = function(filePath, mdString) {
     fs.writeFile(filePath, mdString, (err) =>
