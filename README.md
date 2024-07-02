@@ -40,3 +40,6 @@ If you have any additional questions, reach out to me via GitHub or Email: <br>
 https://github.com/Laura-Waters <br>
 laura@gmail.com
 
+## In-Use
+https://github.com/Laura-Waters/README_generator/assets/168473293/5a7531c4-73fd-42af-a188-a54993edec8c
+
